@@ -1,0 +1,14 @@
+{% extends 'flask_user/member_base.html' %}
+
+{% block content %}
+{% from "common/form_macros.html" import render_field, render_submit_field %}
+<h1>{%trans%}Change username{%endtrans%}</h1>
+
+<form action="" method="POST" class="form" role="form">
+    {{ form.hidden_tag() }}
+    {{ render_field(form.new_username) }}
+    {{ render_field(form.old_password) }}
+    {{ render_submit_field(form.submit) }}
+</form>
+
+{% endblock %}

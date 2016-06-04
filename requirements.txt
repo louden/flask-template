@@ -1,0 +1,24 @@
+# This file is used by pip to install required python packages
+# Usage: pip install -r requirements.txt
+
+# NOTE: I am not using version numbers. When I start a new project I will
+# install the latest and then fix the descepancies.  This was I ensure I 
+# get the latest stable release.
+
+# Flask Framework
+Flask
+
+# Flask Packages
+Flask-Migrate
+Flask-SQLAlchemy
+Flask-User
+Flask-WTF
+flask-debugtoolbar
+
+# Development tools
+pytest
+pytest-flask
+pytest-cov
+
+# Payments
+stripe

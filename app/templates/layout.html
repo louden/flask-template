@@ -1,0 +1,29 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyApp</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Optional apple-touch-icon
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/skeleton.css">
+        <link rel="stylesheet" href="/static/css/site.css">
+    </head>
+
+    <body>
+        {% include 'includes/_nav.html' %}
+    
+        <div class="container">
+            {% include 'includes/_flash.html' %} 
+            {% block content %}{% endblock %}  
+        </div>
+
+        {% include 'includes/_footer.html' %} 
+    </body>
+</html>
