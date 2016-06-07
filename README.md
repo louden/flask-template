@@ -4,18 +4,27 @@ A Flask template with authentication, billing, testing and database support.
 
 This template is heavily based on the [Flask-User-starter-app](https://github.com/lingthio/Flask-User-starter-app) by [lingthio](https://github.com/lingthio/).
 
+## Differences from [Flask-User-starter-app](https://github.com/lingthio/Flask-User-starter-app)
+
+This template is customized for my own use for a few projects.  It has (or will have):
+
+- Bootstrap removed
+- Stripe integrations
+- AWS deploy scripts
+
 ## TODO
 
-() Update the Readme
-() Make the subscription flow much better
-    () Add all required information to the sign-up form
-    () Make templates for the steps
-    () Improve error handling
-() Clean up the code
-() Add deploy to AWS scripts
+- (x) Update the Readme
+- ( ) Make the subscription flow much better
+    - ( ) Add all required information to the sign-up form
+    - ( ) Make templates for the steps
+    - ( ) Improve error handling
+- ( ) Clean up the code
+- ( ) Add deploy to AWS scripts
 
+## Instructions
 
-## Cloning the code base
+### Cloning the code base
 We assume that you have `git` and `virtualenvwrapper` installed.
 
     # Clone the code repository into ~/dev/my_app
@@ -32,20 +41,17 @@ We assume that you have `git` and `virtualenvwrapper` installed.
     pip install -r requirements.txt
     
     
-## Configuring the app
+### Configuring the app
 
-Before we can use this application, we will have to configure the database URL and SMTP account
-that will be used to access the database and to send emails.
+Before we can use this application, we will have to configure the database URL and SMTP account that will be used to access the database and to send emails.
 
 Settings common to all environments are found in app/startup/common_settings.py
 
 The example environment-specific settings are found in app/env_settings_example.py
 
-Note: DO NOT edit app/config/settings.py because checking this into the core repository
-will expose security sensitive information.
+Note: DO NOT edit app/config/settings.py because checking this into the core repository will expose security sensitive information.
 
-Copy the `app/env_settings_example.py` to an `env_settings.py` that resides **outside** the code directory
-and point the OS environment variable `ENV_SETTINGS_FILE` to this file.
+Copy the `app/env_settings_example.py` to an `env_settings.py` that resides **outside** the code directory and point the OS environment variable `ENV_SETTINGS_FILE` to this file.
 
     # Copy env_settings.py and place it outside of the code directory
     cd /path/to/project
@@ -58,13 +64,11 @@ For convenience, you can set ENV_SETTINGS_FILE in your ``~/.bashrc`` or ``~/.bas
 
 Now edit the /path/to/env_settings.py file.
 
-
-## Initializing the Database
+### Initializing the Database
     # Create DB tables and populate the roles and users tables
     python manage.py init_db
 
-
-## Running the app
+### Running the app
 
     # Start the Flask development web server
     ./runserver.sh    # will run "python manage.py runserver"
@@ -76,28 +80,26 @@ You can make use of the following users:
 - email `admin@example.com` with password `Password1`.
 
 
-## Testing the app
+### Testing the app
 
     # Run all the automated tests in the tests/ directory
     ./runtests.sh         # will run "py.test -s tests/"
 
 
-## Generating a test coverage report
+### Generating a test coverage report
 
     # Run tests and show a test coverage report
     ./runcoverage.sh      # will run py.test with coverage options
 
-## Database migrations
+### Database migrations
 
     # Show all DB migration commands
     python manage.py db
 
 See [the Alembic docs](alembic.readthedocs.org) for more information.
 
-
-## Trouble shooting
+### Troubleshooting
 If you make changes in the Models and run into DB schema issues, delete the sqlite DB file `app/app.sqlite`.
-
 
 ## Acknowledgements
 With thanks to the following Flask extensions:
