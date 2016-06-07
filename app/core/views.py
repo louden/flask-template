@@ -73,7 +73,6 @@ def create_subscription():
     except:
         # If the cutomer creation fails on stripe's end, stop
         return('Failure')
-    try
 
     # Create the new user
     user = User(email=email,
