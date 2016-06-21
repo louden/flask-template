@@ -1,17 +1,40 @@
-# This file starts the WSGI web application.
-# - Heroku starts gunicorn, which loads Procfile, which starts manage.py
-# - Developers can run it from the command line: python runserver.py
+#!/usr/bin/env python
 
-from app import create_app
+import os
 
-app = create_app()
+from flask.ext.script import Manager, Server
+from flask.ext.script.commands import ShowUrls, Clean
+from appname import create_app
+from appname.database import db
+from appname.main.models import User
+
+# default to dev config because no one should use this in
+# production anyway
+env = os.environ.get('APPNAME_ENV', 'dev')
+app = create_app('appname.settings.{}Config'.format(env.capitalize()))
+
+manager = Manager(app)
+manager.add_command("server", Server())
+manager.add_command("show-urls", ShowUrls())
+manager.add_command("clean", Clean())
 
 
-# Start a development web server if executed from the command line
+@manager.shell
+def make_shell_context():
+    """ Creates a python REPL with several default imports
+        in the context of the app
+    """
+
+    return dict(app=app, db=db, User=User)
+
+
+@manager.command
+def createdb():
+    """ Creates a database with all of the tables defined in
+        your SQLAlchemy models
+    """
+
+    db.create_all()
+
 if __name__ == "__main__":
-    # Manage the command line parameters such as:
-    # - python manage.py runserver
-    # - python manage.py db
-    from app import manager
-
     manager.run()

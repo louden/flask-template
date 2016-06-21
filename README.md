@@ -1,113 +1,38 @@
-# Flask-Template
+# Flask Template
 
-A Flask template with authentication, billing, testing and database support.
+This is a flask template based on the [Flask Foundation](https://github.com/JackStouffer/Flask-Foundation).  I have added Flask-User and Stripe support to the template for use on my own projects.
 
-This template is heavily based on the [Flask-User-starter-app](https://github.com/lingthio/Flask-User-starter-app) by [lingthio](https://github.com/lingthio/).
+I have also reorganized the structure to have models and forms that pertain to a particular blueprint in the folder for that blueprint.
 
-## Differences from [Flask-User-starter-app](https://github.com/lingthio/Flask-User-starter-app)
+# Changes to Make
 
-This template is customized for my own use for a few projects.  It has (or will have):
+When you start a new project with this template, you will need to touch several files, in addition to the content that you add.  These are outlined below. 
 
-- Bootstrap removed
-- Stripe integrations
-- AWS deploy scripts
+## Assets
 
-## TODO
+- appname/assets.py: This file names several css and javascript files that get bundled together and minified.  You will need to edit the names to your specific needs.
 
-- (x) Update the Readme
-- ( ) Make the subscription flow much better
-    - ( ) Add all required information to the sign-up form
-    - ( ) Make templates for the steps
-    - ( ) Improve error handling
-- ( ) Clean up the code
-- ( ) Add deploy to AWS scripts
+## Blueprints
 
-## Instructions
+- appname/__init__.py: As new blueprints are added to the application, they need to be registered in the `create_app()` function.  See the example for `main`.
 
-### Cloning the code base
-We assume that you have `git` and `virtualenvwrapper` installed.
+## Error Handling Pages
 
-    # Clone the code repository into ~/dev/my_app
-    mkdir -p ~/dev
-    cd ~/dev
-    git clone https://github.com/lingthio/Flask-User-starter-app.git my_app
+- appname/templates/{401, 404, 500}.html: These files are basic error messages.  Update them to your application
+- appname/__init__.py: If you add more error handling templates, they need to be registered in the `register_errorhandlers()` function.
 
-    # Create the 'my_app' virtual environment
-    mkvirtualenv -p PATH/TO/PYTHON my_app
+## Settings
 
-    # Install required Python packages
-    cd ~/dev/my_app
-    workon my_app
-    pip install -r requirements.txt
-    
-    
-### Configuring the app
+- appname/settings.py: This file contains all of the settings for the application.  
 
-Before we can use this application, we will have to configure the database URL and SMTP account that will be used to access the database and to send emails.
+## User Pages
 
-Settings common to all environments are found in app/startup/common_settings.py
+- appname/templates/{common, flask_user}/*: These pages have templates that overide the default Flask-User templates that are based on Bootstrap.  If you want to use the defaults, delete these folders.  Otherwise, edit them as desired.
 
-The example environment-specific settings are found in app/env_settings_example.py
+# TODO
 
-Note: DO NOT edit app/config/settings.py because checking this into the core repository will expose security sensitive information.
-
-Copy the `app/env_settings_example.py` to an `env_settings.py` that resides **outside** the code directory and point the OS environment variable `ENV_SETTINGS_FILE` to this file.
-
-    # Copy env_settings.py and place it outside of the code directory
-    cd /path/to/project
-    cp app/env_settings_example.py ../env_settings.py
-    
-    # Point the OS environment variable `ENV_SETTINGS_FILE` to this file
-    export ENV_SETTINGS_FILE=/path/to/env_settings.py
-
-For convenience, you can set ENV_SETTINGS_FILE in your ``~/.bashrc`` or ``~/.bash_profile`` shell configuration file.
-
-Now edit the /path/to/env_settings.py file.
-
-### Initializing the Database
-    # Create DB tables and populate the roles and users tables
-    python manage.py init_db
-
-### Running the app
-
-    # Start the Flask development web server
-    ./runserver.sh    # will run "python manage.py runserver"
-
-Point your web browser to http://localhost:5000/
-
-You can make use of the following users:
-- email `user@example.com` with password `Password1`.
-- email `admin@example.com` with password `Password1`.
-
-
-### Testing the app
-
-    # Run all the automated tests in the tests/ directory
-    ./runtests.sh         # will run "py.test -s tests/"
-
-
-### Generating a test coverage report
-
-    # Run tests and show a test coverage report
-    ./runcoverage.sh      # will run py.test with coverage options
-
-### Database migrations
-
-    # Show all DB migration commands
-    python manage.py db
-
-See [the Alembic docs](alembic.readthedocs.org) for more information.
-
-### Troubleshooting
-If you make changes in the Models and run into DB schema issues, delete the sqlite DB file `app/app.sqlite`.
-
-## Acknowledgements
-With thanks to the following Flask extensions:
-
-* [Alembic](alembic.readthedocs.org)
-* [Flask-Migrate](flask-migrate.readthedocs.org)
-* [Flask-User](pythonhosted.org/Flask-User/)
-
-[Flask-User-starter-app](https://github.com/lingthio/Flask-User-starter-app) was used as a starting point for this code repository.
-
-    # Please consider leaving the line above in your project's README file. Thank you.
+- Fix all flask-user pages to not have bootstrap
+- Fix common/form-macros to not have bootstrap
+- Update tests
+- Add Stripe
+- Users Registration not adding to database
