@@ -1,3 +1,14 @@
+/******** Flask-User ***********/
+/* Left blank, but can be filled in as needed */
+
+.form,
+.table,
+.has-error, 
+.form-group, 
+.control-label,
+.help-block {
+}
+
 /************ FLASH ************/
 
 .flash-bar {
@@ -12,6 +23,7 @@
   list-style: none;
 }
 
+.flash-success, 
 .flash-info {
   background: #dff0d8;
 }
@@ -23,7 +35,6 @@
 .flash-error {
   background: #f2dede;
 }
-
 
 /************ NAVBAR ************/
 
