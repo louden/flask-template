@@ -31,7 +31,5 @@ When you start a new project with this template, you will need to touch several 
 
 # TODO
 
-- Fix all flask-user pages to not have bootstrap
-- Fix common/form-macros to not have bootstrap
 - Update tests
 - Add Stripe
