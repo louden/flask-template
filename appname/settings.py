@@ -26,8 +26,8 @@ class Config(object):
     USER_ENABLE_USERNAME = False  # Register and Login with username
     USER_AFTER_LOGIN_ENDPOINT = 'main.restricted'
     USER_AFTER_LOGOUT_ENDPOINT = 'main.home'
-    USER_LOGIN_TEMPLATE = 'flask_user/login_or_register.html'
-    USER_REGISTER_TEMPLATE = 'flask_user/login_or_register.html'
+#    USER_LOGIN_TEMPLATE = 'flask_user/login_or_register.html'
+#    USER_REGISTER_TEMPLATE = 'flask_user/login_or_register.html'
 
     # Flask-Mail settings
     MAIL_USERNAME = 'email@example.com'

@@ -35,4 +35,3 @@ When you start a new project with this template, you will need to touch several 
 - Fix common/form-macros to not have bootstrap
 - Update tests
 - Add Stripe
-- Users Registration not adding to database

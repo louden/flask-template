@@ -3,7 +3,7 @@
 from flask import (Flask,
                    render_template)
 from webassets.loaders import PythonLoader as PythonAssetsLoader
-
+from flask_mail import Mail
 from flask_user import (UserManager,
                         SQLAlchemyAdapter)
 
@@ -43,6 +43,9 @@ def create_app(object_name):
 
     # initialize SQLAlchemy
     db.init_app(app)
+
+    # Setup Flask-Mail
+    mail = Mail(app)
 
     # initialize Flask-User
     db_adapter = SQLAlchemyAdapter(db, User)
